@@ -1,6 +1,6 @@
 package com.example.netty.common.util
 
-fun ByteArray.toPrettyFormat(): String  {
+fun ByteArray.toPrettyFormat(): String {
     val sb = StringBuilder()
     for (i in indices step 16) {
         val chunk = sliceArray(i until minOf(i + 16, size))

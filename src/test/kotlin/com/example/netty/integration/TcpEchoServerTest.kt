@@ -7,9 +7,8 @@ import kotlin.test.assertEquals
 
 @SpringBootTest
 class TcpEchoServerTest {
-
     @Test
-    fun `Client는_요청을_Echo로_응답_받을_수_있다`(){
+    fun `Client는_요청을_Echo로_응답_받을_수_있다`() {
         val expect = "hello"
         val client = Socket("127.0.0.1", 3000)
 

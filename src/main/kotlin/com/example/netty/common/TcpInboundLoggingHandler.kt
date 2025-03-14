@@ -14,14 +14,13 @@ class TcpInboundLoggingHandler(
         ctx: ChannelHandlerContext,
         msg: Any,
     ) {
-        if (msg is ByteBuf)
-            {
-                logger.info {
-                    "[TcpInboundLogger][$identifier] (read ${msg.readableBytes()}bytes) \n  ${ByteBufUtil.getBytes(
-                        msg,
-                    ).toPrettyFormat()}"
-                }
+        if (msg is ByteBuf) {
+            logger.info {
+                "[TcpInboundLogger][$identifier] (read ${msg.readableBytes()}bytes) \n  ${ByteBufUtil.getBytes(
+                    msg,
+                ).toPrettyFormat()}"
             }
+        }
         super.channelRead(ctx, msg)
     }
 

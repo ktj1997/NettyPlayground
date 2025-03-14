@@ -9,14 +9,14 @@ class NettyServerManagerOrchestrator(
     private val serverManagers: List<NettyServerManager>,
 ) {
     @PostConstruct
-    fun init()  {
+    fun init() {
         serverManagers.forEach { manager ->
             manager.startAll()
         }
     }
 
     @PreDestroy
-    fun clean()  {
+    fun clean() {
         serverManagers.forEach { manager ->
             manager.stopAll()
         }

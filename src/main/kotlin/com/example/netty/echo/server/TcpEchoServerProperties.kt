@@ -2,9 +2,9 @@ package com.example.netty.echo.server
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 
-@ConfigurationProperties(prefix = "netty.server.tcp")
+@ConfigurationProperties(prefix = "netty.server.tcp.echo")
 data class TcpEchoServerProperties(
-    val echo: List<TcpEchoServerProperty>,
+    val properties: List<TcpEchoServerProperty>,
 )
 
 data class TcpEchoServerProperty(

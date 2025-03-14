@@ -9,9 +9,8 @@ class TcpServerEchoHandler : ChannelInboundHandlerAdapter() {
         ctx: ChannelHandlerContext,
         msg: Any,
     ) {
-        if (msg is ByteBuf)
-            {
-                ctx.writeAndFlush(msg)
-            }
+        if (msg is ByteBuf) {
+            ctx.writeAndFlush(msg)
+        }
     }
 }

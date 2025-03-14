@@ -7,7 +7,12 @@ netty:
   server:
     tcp:
       echo:
-        - identifier: tcp-echo1
-          port: 3000
-        - identifier: tcp-echo2
-          port: 3001
+        properties:
+          - identifier: tcp-echo1
+            port: 3000
+          - identifier: tcp-echo2
+            port: 3001
+      socks5:
+        properties:
+          - identifier: socks5-1
+            port: 1080
