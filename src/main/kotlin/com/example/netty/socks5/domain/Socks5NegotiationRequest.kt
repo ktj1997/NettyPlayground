@@ -1,9 +1,9 @@
 package com.example.netty.socks5.domain
 
-data class SocksNegotiationRequest(
+data class Socks5NegotiationRequest(
     val version: SocksVersion,
     val methodCount: Int,
-    val candidates: List<SocksMethod>,
+    val candidates: List<Socks5Method>,
 ) {
     fun toBytes(): ByteArray {
         return byteArrayOf(
@@ -13,11 +13,11 @@ data class SocksNegotiationRequest(
     }
 
     companion object {
-        fun fromBytes(bytes: ByteArray): SocksNegotiationRequest {
-            return SocksNegotiationRequest(
+        fun fromBytes(bytes: ByteArray): Socks5NegotiationRequest {
+            return Socks5NegotiationRequest(
                 version = SocksVersion.fromByte(bytes[0]),
                 methodCount = bytes[1].toUByte().toInt(),
-                candidates = (2..<bytes.size).map { SocksMethod.fromByte(bytes[it]) },
+                candidates = (2..<bytes.size).map { Socks5Method.fromByte(bytes[it]) },
             )
         }
     }

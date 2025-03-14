@@ -1,6 +1,6 @@
 package com.example.netty.socks5.domain
 
-enum class SocksMethod(val code: Int) {
+enum class Socks5Method(val code: Int) {
     NO_AUTH(0x00),
     GSSAPI(0x01),
     USERNAME_PASSWORD(0x02),
@@ -9,8 +9,8 @@ enum class SocksMethod(val code: Int) {
     ;
 
     companion object {
-        fun fromByte(byte: Byte): SocksMethod {
-            return SocksMethod.entries.firstOrNull { it.code == byte.toUByte().toInt() } ?: UNKNOWN
+        fun fromByte(byte: Byte): Socks5Method {
+            return Socks5Method.entries.firstOrNull { it.code == byte.toUByte().toInt() } ?: UNKNOWN
         }
     }
 }

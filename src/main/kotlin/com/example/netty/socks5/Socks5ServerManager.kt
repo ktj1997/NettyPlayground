@@ -3,8 +3,8 @@ package com.example.netty.socks5
 import com.example.netty.NettyServerManager
 import com.example.netty.common.ExceptionHandler
 import com.example.netty.common.TcpInboundLoggingHandler
-import com.example.netty.socks5.domain.SocksMethodSelector
-import com.example.netty.socks5.handler.SocksNegotiationHandler
+import com.example.netty.socks5.domain.Socks5MethodSelector
+import com.example.netty.socks5.handler.Socks5NegotiationHandler
 import io.netty.channel.ChannelHandler
 import org.springframework.stereotype.Component
 
@@ -32,7 +32,7 @@ class Socks5ServerManager(
     private fun handlers(identifier: String): List<ChannelHandler> {
         return buildList {
             add(TcpInboundLoggingHandler(identifier))
-            add(SocksNegotiationHandler(SocksMethodSelector()))
+            add(Socks5NegotiationHandler(Socks5MethodSelector()))
             add(ExceptionHandler(identifier))
         }
     }
