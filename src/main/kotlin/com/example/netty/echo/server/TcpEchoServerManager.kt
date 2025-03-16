@@ -2,7 +2,7 @@ package com.example.netty.echo.server
 
 import com.example.netty.NettyServerManager
 import com.example.netty.common.ExceptionHandler
-import com.example.netty.common.TcpInboundLoggingHandler
+import com.example.netty.common.TcpInboundOutboundLoggingHandler
 import com.example.netty.echo.server.handler.TcpServerEchoHandler
 import io.netty.channel.ChannelHandler
 import org.springframework.stereotype.Component
@@ -18,7 +18,7 @@ class TcpEchoServerManager(
             servers.add(
                 TcpEchoServer(
                     port = property.port,
-                    handlers = handlers(property.identifier),
+                    handlers = { handlers(property.identifier) },
                 ).also { it.start() },
             )
         }
@@ -32,7 +32,7 @@ class TcpEchoServerManager(
 
     private fun handlers(identifier: String): List<ChannelHandler> {
         return buildList {
-            add(TcpInboundLoggingHandler(identifier))
+            add(TcpInboundOutboundLoggingHandler(identifier))
             add(TcpServerEchoHandler())
             add(ExceptionHandler(identifier))
         }

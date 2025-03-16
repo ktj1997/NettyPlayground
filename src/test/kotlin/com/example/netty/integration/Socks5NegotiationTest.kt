@@ -1,21 +1,24 @@
 package com.example.netty.integration
 
+import com.example.netty.socks5.Socks5Properties
 import com.example.netty.socks5.domain.Socks5Method
 import com.example.netty.socks5.domain.Socks5NegotiationRequest
 import com.example.netty.socks5.domain.Socks5NegotiationResponse
 import com.example.netty.socks5.domain.SocksVersion
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import kotlin.test.assertEquals
 
 @SpringBootTest
 class Socks5NegotiationTest {
-    private val socksServerPort = 1080
+    @Autowired
+    lateinit var socks5Properties: Socks5Properties
 
     @Test
     fun `SocksVersion이_SOCK5가_아니라면_연결이_거부된다`() {
-        TestSocket(socksServerPort).use {
+        TestSocket(socks5Properties.properties.first().port).use {
             val request =
                 Socks5NegotiationRequest(
                     version = SocksVersion.UNKNOWN,
@@ -39,7 +42,7 @@ class Socks5NegotiationTest {
         val expectVersion = SocksVersion.SOCKS5
         val expectMethod = Socks5Method.NO_AUTH
 
-        TestSocket(socksServerPort).use {
+        TestSocket(socks5Properties.properties.first().port).use {
             val request =
                 Socks5NegotiationRequest(
                     version = expectVersion,
@@ -68,7 +71,7 @@ class Socks5NegotiationTest {
         val expectVersion = SocksVersion.SOCKS5
         val expectMethod = Socks5Method.NO_AUTH
 
-        TestSocket(socksServerPort).use {
+        TestSocket(socks5Properties.properties.first().port).use {
             val request =
                 Socks5NegotiationRequest(
                     version = expectVersion,

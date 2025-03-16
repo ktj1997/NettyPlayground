@@ -13,7 +13,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel
 
 class TcpEchoServer(
     private val port: Int,
-    private val handlers: List<ChannelHandler>,
+    private val handlers: () -> List<ChannelHandler>,
 ) : NettyServer {
     // bossGroup: ClientSocket Accept
     private val bossGroup = NioEventLoopGroup(1)
@@ -33,7 +33,7 @@ class TcpEchoServer(
                     object : ChannelInitializer<SocketChannel>() {
                         override fun initChannel(ch: SocketChannel) {
                             val pipeLine = ch.pipeline()
-                            handlers.forEach { pipeLine.addLast(it) }
+                            handlers().forEach { pipeLine.addLast(it) }
                         }
                     },
                 )

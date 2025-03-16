@@ -1,9 +1,11 @@
 package com.example.netty.common
 
 import io.github.oshai.kotlinlogging.KotlinLogging
+import io.netty.channel.ChannelHandler.Sharable
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.ChannelInboundHandlerAdapter
 
+@Sharable
 class ExceptionHandler(
     private val identifier: String,
 ) : ChannelInboundHandlerAdapter() {
