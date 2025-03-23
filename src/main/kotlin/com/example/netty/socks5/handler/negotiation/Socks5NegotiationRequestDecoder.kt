@@ -1,4 +1,4 @@
-package com.example.netty.socks5.handler
+package com.example.netty.socks5.handler.negotiation
 
 import com.example.netty.common.util.getNBytes
 import com.example.netty.common.util.readNBytes
@@ -7,7 +7,6 @@ import com.example.netty.socks5.domain.Socks5Status
 import com.example.netty.socks5.domain.SocksVersion
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.netty.buffer.ByteBuf
-import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ByteToMessageDecoder
 import io.netty.handler.codec.DecoderException
@@ -46,7 +45,7 @@ class Socks5NegotiationRequestDecoder : ByteToMessageDecoder() {
             output.add(negotiationRequest)
         } else {
             // bypass
-            output.add(Unpooled.copiedBuffer(input))
+            output.add(input.retain())
         }
     }
 
