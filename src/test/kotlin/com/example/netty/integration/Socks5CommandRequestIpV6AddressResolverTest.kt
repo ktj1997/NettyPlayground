@@ -31,7 +31,7 @@ class Socks5CommandRequestIpV6AddressResolverTest {
                 0xFF.toByte(), 0xFF.toByte(), 0xFF.toByte(), 0xFF.toByte(),
                 0xFF.toByte(), 0xFF.toByte(), 0xFF.toByte(), 0xFF.toByte(),
                 0xFF.toByte(), 0xFF.toByte(), 0xFF.toByte(), 0xFF.toByte(),
-                0xFF.toByte(),0xFF.toByte(),
+                0xFF.toByte(), 0xFF.toByte(),
             )
         val resolver = Socks5CommandRequestIpV6AddressResolver()
         val (address, port) = resolver.resolve(payload)

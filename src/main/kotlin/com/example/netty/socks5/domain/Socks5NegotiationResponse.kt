@@ -3,8 +3,8 @@ package com.example.netty.socks5.domain
 data class Socks5NegotiationResponse(
     val version: SocksVersion,
     val method: Socks5Method,
-) : Socks5Message {
-    override fun toBytes(): ByteArray {
+) {
+    fun toBytes(): ByteArray {
         return byteArrayOf(
             version.code.toUByte().toByte(),
             method.code.toUByte().toByte(),

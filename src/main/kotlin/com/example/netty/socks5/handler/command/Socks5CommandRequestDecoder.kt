@@ -37,8 +37,8 @@ class Socks5CommandRequestDecoder(
 
             val requiredBytes =
                 when (addressType) {
-                    Socks5AddressType.IPV4 -> 4+4+2
-                    Socks5AddressType.IPV6 -> 4+16+2
+                    Socks5AddressType.IPV4 -> 4 + 4 + 2
+                    Socks5AddressType.IPV6 -> 4 + 16 + 2
                     Socks5AddressType.DOMAIN -> {
                         val domainLength = input.getByte(4).toInt()
                         5 + domainLength + 2
