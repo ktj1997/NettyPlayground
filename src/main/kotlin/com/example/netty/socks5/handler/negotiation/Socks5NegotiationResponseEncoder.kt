@@ -1,4 +1,4 @@
-package com.example.netty.socks5.handler
+package com.example.netty.socks5.handler.negotiation
 
 import com.example.netty.socks5.domain.Socks5NegotiationResponse
 import io.github.oshai.kotlinlogging.KotlinLogging

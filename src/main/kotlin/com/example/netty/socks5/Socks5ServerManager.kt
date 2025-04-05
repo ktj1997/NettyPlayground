@@ -1,12 +1,14 @@
 package com.example.netty.socks5
 
+import Socks5CommandRequestDecoder
 import com.example.netty.NettyServerManager
 import com.example.netty.common.ExceptionHandler
 import com.example.netty.common.TcpInboundOutboundLoggingHandler
 import com.example.netty.socks5.domain.Socks5MethodSelector
-import com.example.netty.socks5.handler.Socks5NegotiationRequestDecoder
-import com.example.netty.socks5.handler.Socks5NegotiationRequestHandler
-import com.example.netty.socks5.handler.Socks5NegotiationResponseEncoder
+import com.example.netty.socks5.domain.command.Socks5CommandRequestAddressResolverFactory
+import com.example.netty.socks5.handler.negotiation.Socks5NegotiationRequestDecoder
+import com.example.netty.socks5.handler.negotiation.Socks5NegotiationRequestHandler
+import com.example.netty.socks5.handler.negotiation.Socks5NegotiationResponseEncoder
 import io.netty.channel.ChannelHandler
 import org.springframework.stereotype.Component
 
@@ -37,6 +39,7 @@ class Socks5ServerManager(
             add(Socks5NegotiationResponseEncoder())
             add(Socks5NegotiationRequestDecoder())
             add(Socks5NegotiationRequestHandler(Socks5MethodSelector()))
+            add(Socks5CommandRequestDecoder(Socks5CommandRequestAddressResolverFactory()))
             add(ExceptionHandler(identifier))
         }
     }
